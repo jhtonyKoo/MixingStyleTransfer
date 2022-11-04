@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>MUSIC MIXING STYLE TRANSFER</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="css/agency.min.css" rel="stylesheet">
+    <link href="css/agency.css" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+      <div class="container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <!-- Menu -->
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#abstract">Abstract</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#samples">Audio Samples</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#proposed">Methodology</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#evaluation">Evaluation</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#supplementary">Supplementary Materials</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+      <div class="container">
+        <div class="intro-text">
+          <div class="intro-heading">Music Mixing Style Transfer:</div>
+          <div class="intro-lead-in">A Contrastive Learning Approach</div>
+          <div class="intro-lead-in">To Disentengle Audio Effects</div>
+          
+          <p><div style="position:center;"> <br><br>*Junghyun Koo, Marco A. Martı́nez-Ramı́rez, Wei-Hsiang Liao, Stefan Uhlich, Kyogu Lee, and Yuki Mitsufuji<br>Sony Group Corporation and Music and Audio Research Group (MARG), Seoul National University <br><i>*This work was done during an internship at Sony</i> </div></p>
+          <p><div style="position:center;"> <br><br>Paper: <a href="https://arxiv.org/" style="color:#4c4ce6"> https://arxiv.org/</a> </div></p>
+          <p><div style="position:center;"> Code: <a href="https://github.com/jhtonyKoo/music_mixing_style_transfer" style="color:#4c4ce6"> https://github.com/jhtonyKoo/music_mixing_style_transfer</a> </div></p>
+          <p><div style="position:center;"> Supplementary Materials: <a href="https://tinyurl.com/4math4pm" style="color:#4c4ce6"> https://tinyurl.com/4math4pm</a> </div></p>
+        </div>
+      </div>
+    </header>
+    
+
+
+    <!-- Abstract -->
+    <section id="abstract">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">ABSTRACT</h2>
+            <p><div style="text-align:justify"> We propose an end-to-end music mixing style transfer system that converts the mixing style of an input multitrack to that of a reference song. This is achieved with an encoder pre-trained with a contrastive objective to extract only audio effects related information from a reference music recording. All our models are trained in a self-supervised manner from an already-processed wet multitrack dataset with an effective data preprocessing method that alleviates the data scarcity of obtaining unprocessed dry data. We analyze the proposed encoder for the disentanglement capability of audio effects and also validate its performance for mixing style transfer through both objective and subjective evaluations. From the results, we show the proposed system not only converts the mixing style of multitrack audio close to a reference but is also robust with mixture-wise style transfer upon using a music source separation model. </div></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+    <!-- Samples -->
+    <section class="bg-light" id="samples">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Audio Samples</h2>
+            <br>
+            <div class="nav nav-pills justify-content-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <a class="nav-link py-3 px-4 active" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">Realworld Recordings</a>
+              <a class="nav-link py-3 px-4" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">Synthetic Data</a>
+              <a class="nav-link py-3 px-4" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false">Comparison w/ DeepAFx-ST</a>
+              <a class="nav-link py-3 px-4" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-4" role="tab" aria-controls="v-pills-4" aria-selected="false">Interpolation</a>
+            </div>
+            <div class="tab-content py-5" id="v-pills-tabContent">
+
+              <!-- style transfer on real world data -->
+              <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
+                <p><div style="text-align:justify"> Music Mixing Style Transfer with <b>realworld recordings</b>.
+                  <br> We perform style transfer using <i>MixFXcloner</i> trained with Φ<sub><i>p.s.</i></sub> on realworld recordings.
+                  Our system converts the mixing style with stems separated by <a href="https://github.com/facebookresearch/demucs" style="color:#4c4ce6"> <i>Hybrid Demucs</i></a>.
+                  <br> <p style="color:#93a1a1;"><i>Please use devices such as speakers, headphones, and earphones in a quiet environment to analyze the sound source. </i></p></div></p>
+                  <style type="text/css">
+                    .center{  margin-left: auto;margin-right: auto;}
+                    .tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+                    .tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+                      font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+                    .tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+                      font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+                    .tg .tg-egha{background-color:#036400;border-color:#680100;color:#f8a102;font-weight:bold;font-size:16px;text-align:center;vertical-align:middle}
+                    .tg .tg-x4ez{border-color:#680100;text-align:center;vertical-align:middle}
+                    .tg .tg-1lrr{background-color:#ffffff;border-color:#680100;font-weight:bold;text-align:center;vertical-align:middle}
+                    .tg .tg-4iew{background-color:#ffffff;border-color:#680100;text-align:center;vertical-align:middle}
+                    .tg .tg-7s6s{border-color:#680100;font-weight:bold;text-align:center;vertical-align:middle}
+                    </style>
+                    <table class="tg center">
+                    <thead>
+                      <tr>
+                        <th class="tg-egha">Sample<br>Index</th>
+                        <th class="tg-egha">Style<br>Transfer</th>
+                        <th class="tg-egha">Song A</th>
+                        <th class="tg-egha"></th>
+                        <th class="tg-egha">Song B</th>
+                        <th class="tg-egha">Converted Output</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="tg-1lrr" rowspan="2">#1</td>
+                        <td class="tg-1lrr">A→B</td>
+                        <td class="tg-4iew" rowspan="2"><i>"Young Lust" by Pink Floyd</i> <audio controls style="width:250px;"><source src="audio/realworld/real_real/1/song_A.wav" type="audio/wav"></audio></td>
+                        <td class="tg-1lrr">→</td>
+                        <td class="tg-4iew" rowspan="2"><i>"If You're Too Shy" by The 1975</i> <audio controls style="width:250px;"><source src="audio/realworld/real_real/1/song_B.wav" type="audio/wav"></audio> </td>
+                        <td class="tg-4iew"><audio controls style="width:250px;"><source src="audio/realworld/real_real/1/out_AtoB.wav" type="audio/wav"></audio></td>
+                      </tr>
+                      <tr>
+                        <td class="tg-7s6s">B→A</td>
+                        <td class="tg-x4ez">←</td>
+                        <td class="tg-x4ez"><audio controls style="width:250px;"><source src="audio/realworld/real_real/1/out_BtoA.wav" type="audio/wav"></audio></td>
+                      </tr>
+                      <tr>
+                        <td class="tg-7s6s" rowspan="2">#2</td>
+                        <td class="tg-1lrr">A→B</td>
+                        <td class="tg-4iew" rowspan="2"><i>"Everything Goes On" by Porter Robinson</i> <audio controls style="width:250px;"><source src="audio/realworld/real_real/2/song_A.wav" type="audio/wav"></audio></td>
+                        <td class="tg-4iew">→</td>
+                        <td class="tg-4iew" rowspan="2"><i>"I'm in Love With You" by The 1975</i> <audio controls style="width:250px;"><source src="audio/realworld/real_real/2/song_B.wav" type="audio/wav"></audio></td>
+                        <td class="tg-4iew"><audio controls style="width:250px;"><source src="audio/realworld/real_real/2/out_AtoB.wav" type="audio/wav"></audio></td>
+                      </tr>
+                      <tr>
+                        <td class="tg-7s6s">B→A</td>
+                        <td class="tg-x4ez">←</td>
+                        <td class="tg-x4ez"><audio controls style="width:250px;"><source src="audio/realworld/real_real/2/out_BtoA.wav" type="audio/wav"></audio></td>
+                      </tr>
+                    </tbody>
+                    </table>
+              </div>
+
+              <!-- style conversion on synthetic data -->
+              <div class="tab-pane fade center" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
+                <p><div style="text-align:justify"> Results of <b>Music Mixing Style Transfer</b> from the proposed models.
+                  <br> We compare the outputs from <i>MixFXcloner</i>s trained with different audio effects encoders. Samples of Target Style Mix <i>(ref)</i> and Ground Truth <i>(gt)</i> in this section were generated using our <i>FXmanipulator</i>.
+                  <br> <p style="color:#93a1a1;"><i>Please use devices such as speakers, headphones, and earphones in a quiet environment to analyze the sound source. </i></p></div></p>
+                  <style type="text/css">
+                    .center{  margin-left: auto;margin-right: auto;}
+                    .tg  {border-collapse:collapse;border-color:#aabcfe;border-spacing:0;}
+                    .tg td{background-color:#e8edff;border-bottom-width:1px;border-color:#aabcfe;border-style:solid;border-top-width:1px;
+                      border-width:0px;color:#669;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;
+                      word-break:normal;}
+                    .tg th{background-color:#b9c9fe;border-bottom-width:1px;border-color:#aabcfe;border-style:solid;border-top-width:1px;
+                      border-width:0px;color:#039;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;
+                      padding:10px 5px;word-break:normal;}
+                    .tg .tg-ga12{background-color:#ffffff;border-color:inherit;color:#000000;text-align:center;vertical-align:middle}
+                    .tg .tg-1k8z{background-color:#ffffff;border-color:inherit;color:#000000;font-weight:bold;text-align:center;vertical-align:middle}
+                    .tg .tg-7uo3{background-color:#cbcefb;border-color:inherit;color:#000000;font-weight:bold;text-align:center;vertical-align:middle;font-size:16px}
+                    .tg .tg-rnnf{background-color:#ccd6f7;border-color:inherit;color:#000000;font-weight:bold;text-align:center;vertical-align:middle}
+                    .tg .tg-36ne{background-color:#ccd6f7;border-color:inherit;color:#000000;text-align:center;vertical-align:middle}
+                    .tg .tg-uoai{background-color:#ccd6f7;border-color:inherit;color:#000000;font-weight:bold;text-align:center;vertical-align:middle}
+                    </style>
+                    <table class="tg center">
+                    <thead>
+                      <tr>
+                        <th class="tg-7uo3">Conversion<br>Type</th>
+                        <th class="tg-7uo3">Sample<br>Index</th>
+                        <th class="tg-7uo3">Initial Mix<br>(<i>x</i>)</th>
+                        <th class="tg-7uo3">Target Style Mix<br>(<i>ref</i>)</th>
+                        <th class="tg-7uo3"><i>MixFXcloner</i><br>w/ MEE</th>
+                        <th class="tg-7uo3"><i>MixFXcloner</i><br>w/ Φ<sub>∅</sub> </th>
+                        <th class="tg-7uo3"><i>MixFXcloner</i><br>w/ Φ<sub><i>norm</i></sub></th>
+                        <th class="tg-7uo3"><i>MixFXcloner</i><br>w/ Φ<sub><i>p.s.</i></sub></th>
+                        <th class="tg-7uo3">Ground Truth<br>(<i>gt</i>)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="tg-1k8z" rowspan="4">Multitrack<br>conversion</td>
+                        <td class="tg-1k8z">#1</td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/1/input.wav" type="audio/wav"></audio></td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/1/reference.wav" type="audio/wav"></audio></td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/1/out_mee.wav" type="audio/wav"></audio></td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/1/out_model1.wav" type="audio/wav"></audio></td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/1/out_model2.wav" type="audio/wav"></audio></td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/1/out_model3.wav" type="audio/wav"></audio></td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/1/gt.wav" type="audio/wav"></audio></td>
+                      </tr>
+                      <tr>
+                        <td class="tg-rnnf">#2</td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/2/input.wav" type="audio/wav"></audio></td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/2/reference.wav" type="audio/wav"></audio></td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/2/out_mee.wav" type="audio/wav"></audio></td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/2/out_model1.wav" type="audio/wav"></audio></td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/2/out_model2.wav" type="audio/wav"></audio></td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/2/out_model3.wav" type="audio/wav"></audio></td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/2/gt.wav" type="audio/wav"></audio></td>
+                      </tr>
+                      <tr>
+                        <td class="tg-1k8z">#3</td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/3/input.wav" type="audio/wav"></audio></td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/3/reference.wav" type="audio/wav"></audio></td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/3/out_mee.wav" type="audio/wav"></audio></td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/3/out_model1.wav" type="audio/wav"></audio></td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/3/out_model2.wav" type="audio/wav"></audio></td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/3/out_model3.wav" type="audio/wav"></audio></td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/3/gt.wav" type="audio/wav"></audio></td>
+                      </tr>
+                      <tr>
+                        <td class="tg-rnnf">#4</td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/4/input.wav" type="audio/wav"></audio></td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/4/reference.wav" type="audio/wav"></audio></td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/4/out_mee.wav" type="audio/wav"></audio></td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/4/out_model1.wav" type="audio/wav"></audio></td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/4/out_model2.wav" type="audio/wav"></audio></td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/4/out_model3.wav" type="audio/wav"></audio></td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/multitrack/4/gt.wav" type="audio/wav"></audio></td>
+                      </tr>
+                      <tr>
+                        <td class="tg-uoai" rowspan="4">Single stem<br>conversion</td>
+                        <td class="tg-1k8z">drums</td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/drums/input.wav" type="audio/wav"></audio></td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/drums/reference.wav" type="audio/wav"></audio></td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/drums/out_mee.wav" type="audio/wav"></audio></td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/drums/out_model1.wav" type="audio/wav"></audio></td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/drums/out_model2.wav" type="audio/wav"></audio></td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/drums/out_model3.wav" type="audio/wav"></audio></td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/drums/gt.wav" type="audio/wav"></audio></td>
+                      </tr>
+                      <tr>
+                        <td class="tg-rnnf">bass</td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/bass/input.wav" type="audio/wav"></audio></td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/bass/reference.wav" type="audio/wav"></audio></td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/bass/out_mee.wav" type="audio/wav"></audio></td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/bass/out_model1.wav" type="audio/wav"></audio></td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/bass/out_model2.wav" type="audio/wav"></audio></td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/bass/out_model3.wav" type="audio/wav"></audio></td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/bass/gt.wav" type="audio/wav"></audio></td>
+                      </tr>
+                      <tr>
+                        <td class="tg-1k8z">vocals</td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/vocals/input.wav" type="audio/wav"></audio></td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/vocals/reference.wav" type="audio/wav"></audio></td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/vocals/out_mee.wav" type="audio/wav"></audio></td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/vocals/out_model1.wav" type="audio/wav"></audio></td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/vocals/out_model2.wav" type="audio/wav"></audio></td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/vocals/out_model3.wav" type="audio/wav"></audio></td>
+                        <td class="tg-ga12"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/vocals/gt.wav" type="audio/wav"></audio></td>
+                      </tr>
+                      <tr>
+                        <td class="tg-rnnf">other</td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/other/input.wav" type="audio/wav"></audio></td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/other/reference.wav" type="audio/wav"></audio></td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/other/out_mee.wav" type="audio/wav"></audio></td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/other/out_model1.wav" type="audio/wav"></audio></td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/other/out_model2.wav" type="audio/wav"></audio></td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/other/out_model3.wav" type="audio/wav"></audio></td>
+                        <td class="tg-36ne"><audio controls style="width:125px;"><source src="audio/synthetic_data/single_stem/other/gt.wav" type="audio/wav"></audio></td>
+                      </tr>
+                    </tbody>
+                    </table>
+              </div>
+
+              <!-- comparison w/ DeepAFx-ST -->
+              <div class="tab-pane fade center" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
+                <p><div style="text-align:justify"> Comparison with <a href="https://csteinmetz1.github.io/DeepAFx-ST/" style="color:#4c4ce6"> <i>DeepAFx-ST</i></a>. which shares a very similar task: style transfer of audio effects.
+                  <br> Our system converts the mixing style with stems separated by <a href="https://github.com/facebookresearch/demucs" style="color:#4c4ce6"> <i>Hybrid Demucs</i></a>.
+                  <br> <p style="color:#b55757;"><i>Note that this is not a fair comparison since <i>DeepAFx-ST</i> converts the EQ and compression style as a mixture level, while <i>MixFXcloner</i> performs stem-wise conversion on the general mixing style.</i></p></div></p>
+              <style type="text/css">
+                .center{  margin-left: auto;margin-right: auto;}
+                .tg  {border-collapse:collapse;border-color:#aaa;border-spacing:0;}
+                .tg td{background-color:#fff;border-bottom-width:1px;border-color:#aaa;border-style:solid;border-top-width:1px;
+                  border-width:0px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;
+                  word-break:normal;}
+                .tg th{background-color:#f38630;border-bottom-width:1px;border-color:#aaa;border-style:solid;border-top-width:1px;
+                  border-width:0px;color:#fff;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;
+                  padding:10px 5px;word-break:normal;}
+                .tg .tg-cbh5{background-color:#FCFBE3;border-color:#ffce93;text-align:center;vertical-align:top}
+                .tg .tg-8c5o{border-color:#ffce93;text-align:center;vertical-align:top}
+                .tg .tg-acb2{background-color:#FCFBE3;border-color:#ffce93;font-weight:bold;text-align:center;vertical-align:top}
+                .tg .tg-4220{background-color:#f8a102;border-color:#ffce93;color:#000000;font-weight:bold;font-size:16px;text-align:center;vertical-align:top}
+                .tg .tg-b3d1{border-color:#ffce93;font-weight:bold;text-align:center;vertical-align:top}
+                </style>
+                <table class="tg center">
+                <thead>
+                  <tr>
+                    <th class="tg-4220">Style</th>
+                    <th class="tg-4220">Input</th>
+                    <th class="tg-4220">Reference</th>
+                    <th class="tg-4220"><i>DeepAFx-ST</i></th>
+                    <th class="tg-4220"><i>MixFXcloner</i></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="tg-acb2">Neutral to Warm</td>
+                    <td class="tg-cbh5"><audio controls style="width:250px;"><source src="audio/comparison_w_DeepAFx-ST/1_Neutral-to-Warm/input.wav" type="audio/wav"></audio></td>
+                    <td class="tg-cbh5"><audio controls style="width:250px;"><source src="audio/comparison_w_DeepAFx-ST/1_Neutral-to-Warm/reference.wav" type="audio/wav"></audio></td>
+                    <td class="tg-cbh5"><audio controls style="width:250px;"><source src="audio/comparison_w_DeepAFx-ST/1_Neutral-to-Warm/DeepAFx-ST.wav" type="audio/wav"></audio></td>
+                    <td class="tg-cbh5"><audio controls style="width:250px;"><source src="audio/comparison_w_DeepAFx-ST/1_Neutral-to-Warm/MixFXcloner.wav" type="audio/wav"></audio></td>
+                  </tr>
+                  <tr>
+                    <td class="tg-b3d1">Telephone to Neutral</td>
+                    <td class="tg-8c5o"><audio controls style="width:250px;"><source src="audio/comparison_w_DeepAFx-ST/2_Telephone-to-Neutral/input.wav" type="audio/wav"></audio></td>
+                    <td class="tg-8c5o"><audio controls style="width:250px;"><source src="audio/comparison_w_DeepAFx-ST/2_Telephone-to-Neutral/reference.wav" type="audio/wav"></audio></td>
+                    <td class="tg-8c5o"><audio controls style="width:250px;"><source src="audio/comparison_w_DeepAFx-ST/2_Telephone-to-Neutral/DeepAFx-ST.wav" type="audio/wav"></audio></td>
+                    <td class="tg-8c5o"><audio controls style="width:250px;"><source src="audio/comparison_w_DeepAFx-ST/2_Telephone-to-Neutral/MixFXcloner.wav" type="audio/wav"></audio></td>
+                  </tr>
+                  <tr>
+                    <td class="tg-acb2">Bright to Broadcast</td>
+                    <td class="tg-cbh5"><audio controls style="width:250px;"><source src="audio/comparison_w_DeepAFx-ST/3_Bright-to-Broadcast/input.wav" type="audio/wav"></audio></td>
+                    <td class="tg-cbh5"><audio controls style="width:250px;"><source src="audio/comparison_w_DeepAFx-ST/3_Bright-to-Broadcast/reference.wav" type="audio/wav"></audio></td>
+                    <td class="tg-cbh5"><audio controls style="width:250px;"><source src="audio/comparison_w_DeepAFx-ST/3_Bright-to-Broadcast/DeepAFx-ST.wav" type="audio/wav"></audio></td>
+                    <td class="tg-cbh5"><audio controls style="width:250px;"><source src="audio/comparison_w_DeepAFx-ST/3_Bright-to-Broadcast/MixFXcloner.wav" type="audio/wav"></audio></td>
+                  </tr>
+                </tbody>
+                </table>
+              </div>
+
+              <!-- interpolation example -->
+              <div class="tab-pane fade center" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
+                <img src="img/interpolation_overview.png" style="max-width: 60%; height: auto; " />
+                <p><div style="text-align:justify"> <b>Interpolating</b> 2 different reference tracks.
+                  <br> We encode two different reference tracks then linearly interpolate those two embeddings for inference. 
+                  This example segmentizes the input into 30 pieces (approximately 1 sec. per each segment) then condition the linearly interpolated embeddings that is weighted from <i>Reference A</i> to <i>Reference B</i>
+                  <br> <p style="color:#93a1a1;"><i>This demonstration is not mentioned in the paper, but this example implies a potential for controllable style transfer using latent space.</i></p></div></p>
+                  <style type="text/css">
+                    .center{  margin-left: auto;margin-right: auto;}
+                    .tg  {border-collapse:collapse;border-color:#ccc;border-spacing:0;}
+                    .tg td{background-color:#fff;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
+                      font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+                    .tg th{background-color:#f0f0f0;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
+                      font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+                    .tg .tg-4n2o{border-color:#c0c0c0;font-weight:bold;text-align:center;vertical-align:center}
+                    .tg .tg-6ild{background-color:#c0c0c0;border-color:#9b9b9b;color:#680100;font-weight:bold;font-size:16px;text-align:center;vertical-align:center}
+                    .tg .tg-fzdr{border-color:#c0c0c0;text-align:center;vertical-align:center}
+                    .tg .tg-x2l4{background-color:#efefef;border-color:#c0c0c0;font-weight:bold;text-align:center;vertical-align:center}
+                    .tg .tg-tjwp{background-color:#efefef;border-color:#c0c0c0;text-align:center;vertical-align:center}
+                    </style>
+                    <table class="tg center">
+                    <thead>
+                      <tr>
+                        <th class="tg-6ild">Input:<audio controls style="width:101px;height:20px;"><source src="audio/interpolation/input.wav" type="audio/wav"></audio></th>
+                        <th class="tg-6ild">Reference A</th>
+                        <th class="tg-6ild">→</th>
+                        <th class="tg-6ild">Reference B</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="tg-4n2o">Target Style Mix</td>
+                        <td class="tg-fzdr"><audio controls style="width:250px;"><source src="audio/interpolation/reference_A.wav" type="audio/wav"></audio></td>
+                        <td class="tg-fzdr">-</td>
+                        <td class="tg-fzdr"><audio controls style="width:250px;"><source src="audio/interpolation/reference_B.wav" type="audio/wav"></audio></td>
+                      </tr>
+                      <tr>
+                        <td class="tg-x2l4">Interpolation Output</td>
+                        <td class="tg-tjwp" colspan="3"><audio controls style="width:550px;"><source src="audio/interpolation/output_interpolation.wav" type="audio/wav"></audio></td>
+                      </tr>
+                      <tr>
+                        <td class="tg-4n2o">Individual Output</td>
+                        <td class="tg-fzdr"><audio controls style="width:250px;"><source src="audio/interpolation/output_A.wav" type="audio/wav"></audio></td>
+                        <td class="tg-fzdr">-</td>
+                        <td class="tg-fzdr"><audio controls style="width:250px;"><source src="audio/interpolation/output_B.wav" type="audio/wav"></audio></td>
+                      </tr>
+                    </tbody>
+                    </table>
+              </div>
+
+            </div>
+            <div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    
+    <!-- proposed method -->
+    <section class="bg-light" id="proposed">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Methodology</h2>
+            <!-- System overview -->
+            <p><div style="text-align:middle;font-size:28px;"> <br><b>System Overview</b></div></p>
+            <img src="img/model_pipeline_v3.png" style="max-width: 100%; height: auto;" />
+            <p><div style="text-align:justify"> MixFXcloner Ψ aims to convert the mixing style of the input track
+              to that of the reference track. This is assisted by FXencoder Φ which was pre-trained with a contrastive objective to encode only the audio
+              effects-related information of the given audio track. During the training stage, we randomly select two different segments of each instrument
+              track from the Music Source Separation (MSS) dataset then FX normalize them. We input one of the chosen segments to the MixFXcloner,
+              where its objective is to match the mixing style of the other track manipulated by the FXmanipulator. We apply the same manipulation to
+              the input to produce a ground truth sample for loss computation. During the inference stage, not only we can transfer the mixing style of
+              single-stem inputs, but also mixture-wise inputs by using a MSS model. </div></p>
+            <!-- FXencoder -->
+            <p><div style="text-align:middle;font-size:28px;"> <br><b>Training Procedure of the Audio Effects Encoder <i>(FXencoder)</i></b></div></p>
+            <p><div style="text-align:justify"> The main idea of the Audio Effects Encoder (FXencoder) Φ is to disentangle FX information from music recordings. 
+              We adopt a contrastive learning approach to solely discriminate the difference of FX among various mixing styles.</div></p>
+            <img src="img/FXencoder_training.png" style="max-width: 80%; height: auto;" />
+              <p><div style="text-align:justify"> Training Procedure: </div></p>
+              <p><div style="text-align:justify;font-size:13px;color: #45579f;"> &nbsp;&nbsp;&nbsp;&nbsp;1. preprocess the input data with <i>FX normalization</i> to normalize features related to audio effects<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;2. apply the same manipulation using <i>FXmanipulator</i> to two different contents and assign them as positive pairs<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;3. a batch of manipulated tracks is formed by repeating this procedure, where contents applied with different manipulations are assigned as negative samples</div></p>
+          </div>
+        </div>
+      </div>
+    </section>
+   
+
+    
+    <!-- evaluation -->
+    <section class="bg-light" id="evaluation">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">EVALUATION</h2>
+            <p><div style="text-align:justify">This work mainly assesses <i>FXencoder</i> with its effectiveness in extracting FX from a music recording and how informative the encoded representation is to performing mixing style transfer. </div></p>
+            <!-- FXencoder -->
+            <p><div style="text-align:middle;font-size:28px;"> <br><b>Disentangled Representation of the <i>FXencoder</i></b></div></p>
+            <!-- t-SNE -->
+            <p><div style="text-align:left;font-size:20px;"><b>Qualitative Evaluation</b></div></p>
+            <img src="img/t_sne.png" style="max-width: 90%; height: auto;" />
+            <p><div style="text-align:justify"> Points with the same color represent segments of different songs manipulated with the same FXmanipulator parameters. Therefore, each color group contains the same 25 songs.
+            <br>From <i>(a)~(d)</i>, we observe that our proposed <i>FXencoder</i> forms better clusters than the <a href="https://arxiv.org/abs/2202.08520" style="color:#4c4ce6"> Music Effects Encoder</a> (MEE) according to each group of audio effects.
+            <br><i>(e)~(h)</i> demonstrates the importance of our proposed <i>probability scheduling</i>, where the encoder trained with this technique is better at clustering upon less dominant audio effects.</div></p>            
+            <!-- objective measure -->
+            <p><div style="text-align:left;font-size:20px;"><b>Objective Evaluation</b></div></p>
+            <img src="img/obj_measure_fxenc.png" style="max-width: 100%; height: auto; " />
+            <p><div style="text-align:justify"> We quantitatively measure the representation of <i>FXencoder</i> using metrics that convey disentanglement information.
+            This table summarizes disentanglement performance on representation obtained from combinations of multiple/single audio effects applied on multitrack/single stem. </div></p>
+
+            <!-- Style Transfer -->
+            <p><div style="text-align:middle;font-size:28px;"> <br><b>Mixing Style Transfer</b></div></p>
+            <!-- objective measure -->
+            <p><div style="text-align:left;font-size:20px;"><b>Objective Evaluation</b></div></p>
+            <img src="img/obj_measure_style_transfer.png" style="max-width: 85%; height: auto;" />
+            <p><div style="text-align:justify">Overall, we observe the tendency of each model's performance to be the same as observed in Disentangled Representation of the <i>FXencoder</i>.
+            <br>Moreover, we evaluate our system upon the inference pipeline using a MSS model. The mean SDR value between the original and source separated outputs are 8.004 and 4.554 for mixture and stem-wise conversion, respectively.
+            The higher SDR for the mixture could be due to the fact that the artifacts caused from the MSS model get cancelled out on mixture level conversion. </div></p>
+            <!-- listening test -->
+            <p><div style="text-align:left;font-size:20px;"><b>Subjective Evaluation</b></div></p>
+            <img src="img/listening_test.png" style="max-width: 80%; height: auto;" />
+            <p><div style="text-align:justify"> A total of 11 audio engineers participated the listening test, where the participants were asked to rate different mixes based on their similarity to the reference mix in terms of audio effects characteristics and mixing style.
+            <br>For both the single stem and multitrack conversion, <i>MixFXcloner</i> using Φ<sub>p.s</sub> ourperforms all other methods. Overall, similar performance was observed compared to the objective metrics.</div></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- supplementary -->
+    <section class="bg-light" id="supplementary">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">SUPPLEMENTARY MATERIALS</h2>
+            <p><div style="text-align:justify"> We disclose detailed explanation, configuration, and full results of the paper at our supplementary materials <a href="https://tinyurl.com/4math4pm" style="color:#4c4ce6"> link</a>. 
+              <br><li>full results of t-SNE analysis</li>
+              <li>details of <i>FXmanipulator</i></li>
+              <li>probability scheduling</li>
+              <li>listening test</li>
+            </div></p>
+            
+            </div>
+        </div>
+      </div>
+    </section>
+   
+    
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/agency.min.js"></script>
+
+  </body>
+
+</html>
